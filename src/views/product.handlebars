@@ -1,0 +1,17 @@
+<h2>PRODUCT DETAIL</h2>
+
+<div id="info">
+    <h3>{{product.title}}</h3>    
+    <p>ID: {{product._id}}</p>
+    <p>Status: {{product.status}}</p>
+    <p>Description: {{product.description}}</p>
+    <p>Price: ${{product.price}}</p>
+    <p>Code: {{product.code}}</p>
+    <p>Stock: {{product.stock}}</p>
+    <p id="category" >Category: {{product.category}}</p>
+    <button id="button_addToCart" data-product-id="{{product._id}}" data-cart-id="{{cart}}" >Add To Cart</button>
+</div>
+<br>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript" src="/js/addToCart.js"></script>
+<script type="text/javascript" src="/js/productAdd.js"></script>

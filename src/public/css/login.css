@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+}
+
+#logo {
+    background-color: #000000;
+    padding: 3rem;
+    color: #fff;
+    text-align: center;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+}
+
+#login_title {
+    margin-left: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 0;
+    font-size: 1.5rem;
+    color: #000000;
+}
+
+#login-redirect-signup {
+    display: flex;
+    gap: 1rem;
+    margin-left: 2rem;
+    align-items: center;
+}
+
+#login-redirect-signup p {
+    font-size: 0.9rem;
+    margin-top: 0.7rem;
+    color: #000000;
+}
+
+#login-redirect-signup a {
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: #007bff;
+}
+
+#local-login_tittle {
+    font-size: 1rem;
+    margin-top: 2rem;
+    margin-left: 2rem;
+    color: #000000;
+}
+
+#div_form {
+    padding-left: 2rem;
+    margin: 100px;
+}
+
+#form_line {
+    margin-bottom: 10px;
+    background-color: #ddd;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    padding: 10px;
+}
+
+#login_failure-message {
+    margin-top: 0;
+    font-size: 0.9rem;
+    color: #dc3545;
+}
+
+#login_buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+#login_button {
+    margin-top: 0.4rem;
+    background-color: #3cff00;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#restore_button {
+    margin-top: 0.4rem;
+    background-color: #000000;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#restore_button a {
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: #fff;
+}
+#center{
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    border: 2px solid #ff0000;
+    border-radius: 10px;
+  
+}
+#github_button {
+    display: flex;
+    justify-content: center;
+    margin-left: 2rem;
+    margin-top: 4rem;
+    margin-bottom: 6rem;
+    background-color: #000000;
+    color: #fff;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}

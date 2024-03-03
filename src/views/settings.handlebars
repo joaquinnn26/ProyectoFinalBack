@@ -1,0 +1,24 @@
+
+<h1>Lista de Usuarios</h1>
+
+{{#if users.length}}
+
+  <ul>
+    {{#each users}}
+      <li>
+        <strong>{{last_name}}</strong> - {{role}} - {{email}} 
+        
+
+        <button class="button_delete" data-user-id="{{_id}}">Eliminar</button>
+        <button class="button_change" data-user-id="{{_id}}">Cambiar Rol</button>
+      </li>
+    {{/each}}
+  </ul>
+{{else}}
+  <p>No hay usuarios.</p>
+{{/if}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/deleted.js"></script>
+<script src="/js/deleteProduct.js"></script>
+<script src="/js/changeRole.js"></script>
+<script src="/js/changed.js"></script>

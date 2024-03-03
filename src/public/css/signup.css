@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+}
+
+#logo {
+    background-color: black;
+    padding: 3rem;
+    color: white;
+    text-align: center;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+}
+
+#signup_title {
+    margin-left: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 0;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+#signup-redirect-login {
+    display: flex;
+    gap: 1rem;
+    margin-left: 2rem;
+    align-items: center;
+}
+
+#signup-redirect-login p {
+    font-size: 0.9rem;
+    margin-top: 0.7rem;
+    color: #555;
+}
+
+#signup-redirect-login a {
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: #007bff;
+}
+
+#local-signup_tittle {
+    font-size: 1rem;
+    margin-top: 2rem;
+    margin-left: 2rem;
+    color: #333;
+}
+
+#div_form {
+    padding-left: 2rem;
+}
+
+#form_line {
+    margin-bottom: 10px;
+    background-color: #ddd;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    padding: 10px;
+}
+
+#signup_button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+#center{
+    display: flex;
+  flex-direction: column; 
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  border: 2px solid #ff0000;
+  border-radius: 10px;
+
+}
+#github_button {
+    display: flex;
+    justify-content: center;
+    margin-left: 2rem;
+    margin-top: 4rem;
+    margin-bottom: 6rem;
+    background-color: #333;
+    color: #fff;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
