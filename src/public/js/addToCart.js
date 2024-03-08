@@ -9,7 +9,7 @@ function addToCart(cid, pid) {
         },
     }).then(result => {
         if (result.status === 200) {
-            console.log("entro a futnciin"),
+            //console.log("entro a futnciin"),
             Swal.fire({
                 toast: true,
                 position: "top-right",
@@ -18,13 +18,13 @@ function addToCart(cid, pid) {
                 showConfirmButton: false
             });
         } else {
-            console.log("entro a futnciin")
+            //console.log("entro a futnciin")
             return result.json().then(errorData => {
                 throw new Error(errorData.error);
             });
         }
     }).catch(error => {
-        console.log("entro a futnciin"),
+        //console.log("entro a futnciin"),
         Swal.fire({
             
             toast: true,
