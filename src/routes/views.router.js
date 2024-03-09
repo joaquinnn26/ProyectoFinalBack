@@ -8,6 +8,7 @@ import config from "../config/config.js";
 import {logger} from "../utils/index.js"
 import passport from "passport"
 import "../passport.js"
+import { findCartById } from "../services/carts.service.js";
 const router = Router();
 
 router.get("/login", (req, res) => {  
@@ -51,8 +52,12 @@ router.get("/home", passport.authenticate('jwt', {session: false}) ,async (req, 
       }
       const { first_name, email, role } = req.user;
       const isAdmin=(role === "ADMIN")
+      const cartUser=await usersService.findByEmail(email)
+      const cart=await findCartById(cartUser.cart)
+      const isLength=(cart.products.length>0)
       
-      res.render("products", { user: { first_name, email, isAdmin }, productList: productObject, category, page, limit, order, nextPage, prevPage, style: "products" });          
+      console.log("cart lenght",cart.products.length)
+      res.render("products", { cartLength:cart.products.length,isLength:isLength,user: { first_name, email, isAdmin }, productList: productObject, category, page, limit, order, nextPage, prevPage, style: "products" });          
     } catch (error) {
       res.status(500).json({ message: error.message });
     }

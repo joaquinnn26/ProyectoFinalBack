@@ -1,9 +1,12 @@
 <div>
     <i id="icon_cart" class="bi bi-cart4"></i>
-</div>
-<div class="count-products">
+    {{#if isLength}}
+    <span class="count">{{cartLength}}</span>
+    {{else}}
     <span class="count">0</span>
+    {{/if}}
 </div>
+    
 {{#if user.isAdmin}}
     <p id="user-rol">Role: ADMIN ACCOUNT</p>
     <div>
@@ -57,4 +60,4 @@
         {{else}}
             <p></p>
         {{/if}}    
-    </div>
+</div>
