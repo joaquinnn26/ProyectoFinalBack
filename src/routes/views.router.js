@@ -52,12 +52,17 @@ router.get("/home", passport.authenticate('jwt', {session: false}) ,async (req, 
       }
       const { first_name, email, role } = req.user;
       const isAdmin=(role === "ADMIN")
+      //cart info
       const cartUser=await usersService.findByEmail(email)
       const cart=await findCartById(cartUser.cart)
       const isLength=(cart.products.length>0)
-      
-      console.log("cart lenght",cart.products.length)
-      res.render("products", { cartLength:cart.products.length,isLength:isLength,user: { first_name, email, isAdmin }, productList: productObject, category, page, limit, order, nextPage, prevPage, style: "products" });          
+      const productsCart=cart.products.map(doc=> doc.toObject())
+      let totalCompra = 0
+      for (const prod of productsCart) {
+        totalCompra += prod.quantity * prod.product.price
+      }
+
+      res.render("products", { total:totalCompra,cart:productsCart,cartLength:cart.products.length,isLength:isLength,user: { first_name, email, isAdmin }, productList: productObject, category, page, limit, order, nextPage, prevPage, style: "products" });          
     } catch (error) {
       res.status(500).json({ message: error.message });
     }

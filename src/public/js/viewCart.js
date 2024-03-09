@@ -1,4 +1,4 @@
-const cart=document.querySelector('#icon_cart')
+/* const cart=document.querySelector('#icon_cart')
 
 cart.addEventListener('click', function (e) {
     e.preventDefault();
@@ -6,3 +6,4 @@ cart.addEventListener('click', function (e) {
     console.log("anda el evento")
     showHtml();
 });
+ */
