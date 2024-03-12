@@ -60,7 +60,7 @@ class UsersManager  {
         const result = await usersModel.updateOne({ email }, obj);
         console.log("email del update",email)
         console.log("obj",obj)
-        console.log(result)
+        console.log("resultado update",result)
         return result;
       }  
 /*       async updateUserById(id, obj) {

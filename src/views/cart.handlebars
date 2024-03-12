@@ -1,21 +1,35 @@
-<h2>CART DETAIL</h2>
+<h2 id="user_welcome">Welcome, {{user.name}}</h2>
+<p id="user-email">Email: {{user.email}}</p>
+<p id="user-role">User role: {{user.role}}</p>
 
-<div id="contenedor">
-    {{#each cartProductList}}
+<div class="contenedor-botones">
+        <button id="cart_button"><a href="/cart/{{user.cart}}">Your cart</a></button>    
+        <button id="signout_button"><a href="/api/sessions/signout">SIGN OUT</a></button>
+</div>
+
+<h2 id="cart-title" data-user-cart="{{cid}}">CART DETAIL</h2>
+
+<div id="cart-container">
+    <div id="products-container">
+    </div>
+    {{!-- {{#each cartProductList}}
         <h3>{{product.title}}</h3>
         <p>ID: {{product._id}}</p>
         <p>Status: {{product.status}}</p>
         <p>Description: {{product.description}}</p>
         <p>Price: ${{product.price}}</p>
         <p>Quantity: {{quantity}}</p>
-        {{!-- <p>TotalPrice: ${{multiply product.price quantity}}</p> --}}
+        <p>TotalPrice: ${{multiply product.price quantity}}</p>
         <p>Code: {{product.code}}</p>
         <p>Stock: {{product.stock}}</p>
         <p>Category: {{product.category}}</p>        
         <br>
         <br>
-    {{/each}}
+    {{/each}} --}}
+    <div id="total-container">        
+    </div>
 </div>
 <br>
 
-<script src="/js/cart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/addToCart.js"></script>

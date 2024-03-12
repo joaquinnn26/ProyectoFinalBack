@@ -8,7 +8,7 @@ import {saveUserDocuments} from "../services/users.service.js"
 
 export const getUsers=async (req,res)=> {
     const users=await usersService.getUsers()
-    res.status(200).json({message:"usuarios encontrados:",users})
+    res.status(200).json({message:"usuarios encontrados:",payload:users})
 }
 
 export const findUserById = (req, res) => {
@@ -66,8 +66,8 @@ export const changeRole= async (req, res) => {
         }else{
             customError.createError(errorsName.DOCUMENT_MISSING,errorsMessage.DOCUMENT_MISSING,404)
         }
-
-        res.status(200).json({message:"role updated",user:result})
+        const updatedUser = await usersService.findById(idUser)
+        res.status(200).json({message:"role updated",payload:updatedUser})
     } catch (error) {
         res.status(500).json({message:error.message})
     }
@@ -96,7 +96,7 @@ export const deleteUsers=async (req,res)=>{
 }
 export const deleteUserById=async (req,res)=>{
     const {idUser} = req.params
-
+    const userToDelete=await usersService.findById(idUser)
     const userDeleted=await usersService.deleteUserById(idUser)
-    res.status(200).json({message:"user deleted",userDeleted})
+    res.status(200).json({message:"user deleted",payload:userToDelete})
 }

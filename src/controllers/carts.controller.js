@@ -6,7 +6,7 @@ import customError from "../services/errors/errors.generate.js"
 import { errorsMessage, errorsName } from "../services/errors/errors.enum.js";
 import { productsService } from "../repositoryServices/index.js";
 import { transporter } from "../utils/nodemailer.js";
-import { uManager } from "../DAL/dao/mongo/users.dao.js";
+
 export const createACart = (req, res) => {
     try{
         const cart = cartsService.createNewCart();
@@ -21,10 +21,12 @@ export const findCart = async (req, res, next) => {
     try{
         const { cid } = req.params;
         const cart = await cartsService.findCartById(cid);
+        const cartObj=cart.products.map(doc => doc.toObject())
+        console.log("se encontro el carrito",cartObj)
         if (!cart) {
                 customError.createError(errorsName.CART_NOT_FOUND,errorsMessage.CART_NOT_FOUND,500)
             }
-        res.status(200).json({ message: "Cart found", cart });
+        res.status(200).json({ message: "Cart found", payload:cartObj});
     }catch (error) {
         next(error)
     }        
@@ -43,13 +45,14 @@ export const addProductToCart =  async (req, res,next) => {
     }
     try {   
         const product= await productsService.findProdById(pid)
-        console.log(product)
+        console.log("product del add",product)
         if (user._id==product.owner) {
             customError.createError(errorsName.YOU_CREATED_PRODUCT,errorsMessage.YOU_CREATED_PRODUCT,500)
         }
         const productAdded = await cartsService.addProduct(cid, pid);
-    res.status(200).json({ message: "Product added to Cart", cart: productAdded });
-    }catch (error){
+       // const product = await productsService.findProdById(pid)
+        res.status(200).json({ message: "Product added to Cart", payload: product, cart: productAdded });
+   }catch (error){
         res.status(500).json({message:error.message})
     }    
 };
@@ -63,7 +66,7 @@ export const deleteFromCart =  async (req, res ,next) => {
     }
     try {
         const productDeleted= await cartsService.deleteOneFromCart(cid, pid);
-    res.status(200).json({ message: "Product deleted to Cart", cart: productDeleted });
+    res.status(200).json({ message: "Product deleted to Cart", cart: productDeleted,payload:productDeleted.product });
     }catch (error){
         next(error)
     }    

@@ -1,6 +1,58 @@
-<div>
-    <i id="icon_cart" class="bi bi-cart4"></i>
+{{!-- <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  <i id="icon_cart" class="bi bi-cart4"></i></button>
+    {{#if isLength}}
+    <span class="count">{{cartLength}}</span>
+    {{else}}
+    <span class="count">0</span>
+    {{/if}}
+
+
+<!-- Modal -->
+<div  class="modal fade" id="exampleModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div data-user-cart="{{cId}}" id="cart-tittle" class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Mi carrito</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div  id="div-products"  class="modal-body">
+        {{!-- {{#each cart}}
+        <div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="..." class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{product.title}}</h5>
+        <p class="card-text">cantidad: {{quantity}}</p>
+       
+      </div>
+    </div>
+  </div>
 </div>
+
+ {{/each}} --}}
+ {{!-- <p>Total de la compra: ${{total}}</p> --}}
+{{!--       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vaciar Carrito</button>
+        <button type="button"  class="btn btn-primary">Terminar la compra</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+    
+
+</div>
+ --}} 
+<div class="contenedor-botones">
+        <button id="cart_button"><a href="/cart/{{user.cart}}">Your cart</a></button>    
+        <button id="signout_button"><a href="/api/sessions/signout">SIGN OUT</a></button>
+</div>
+
 <h2>PRODUCT DETAIL</h2>
 
 <div id="info">
@@ -11,10 +63,10 @@
     <p>Price: ${{product.price}}</p>
     <p>Code: {{product.code}}</p>
     <p>Stock: {{product.stock}}</p>
-    <p id="category" >Category: {{product.category}}</p>
-    <button id="button_addToCart" data-product-id="{{product._id}}" data-cart-id="{{cart}}" >Add To Cart</button>
+    <p id="category" >Category: {{product.category}}</p>    
+    <button id="button_addToCart" data-cart-id="{{user.cart}}" data-product-id="{{product._id}}">Add To Cart</button>
 </div>
 <br>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script type="text/javascript" src="/js/addToCart.js"></script>
-<script type="text/javascript" src="/js/productAdd.js"></script>
+<script src="/js/productAdd.js"></script>
+

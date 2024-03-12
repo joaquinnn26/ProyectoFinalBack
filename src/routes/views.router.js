@@ -50,19 +50,19 @@ router.get("/home", passport.authenticate('jwt', {session: false}) ,async (req, 
       if (!req.session.passport){
         return res.redirect('/login')
       }
-      const { first_name, email, role } = req.user;
+      const { first_name, email, role,cart } = req.user;
       const isAdmin=(role === "ADMIN")
       //cart info
-      const cartUser=await usersService.findByEmail(email)
+ /*      const cartUser=await usersService.findByEmail(email)
       const cart=await findCartById(cartUser.cart)
       const isLength=(cart.products.length>0)
       const productsCart=cart.products.map(doc=> doc.toObject())
       let totalCompra = 0
       for (const prod of productsCart) {
         totalCompra += prod.quantity * prod.product.price
-      }
+      } */
 
-      res.render("products", { total:totalCompra,cart:productsCart,cartLength:cart.products.length,isLength:isLength,user: { first_name, email, isAdmin }, productList: productObject, category, page, limit, order, nextPage, prevPage, style: "products" });          
+      res.render("products", { /* total:totalCompra,cart:productsCart,cartLength:cart.products.length,isLength:isLength, */user: { cart,first_name, email, isAdmin }, productList: productObject, category, page, limit, order, nextPage, prevPage, style: "products" });          
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
@@ -102,13 +102,17 @@ router.get("/chat", authorize(["USER"]),(req, res) => {
 
 router.get('/home/:id', async (req, res) => {  
   try {
+    try {
       const { id } = req.params
-     /*  const {cart} = req.user */
-      //console.log(req.cookies.token)
-      const decoded=jwt.verify(req.cookies.token,config.secret_jwt)
-    console.log(decoded)
-      const product = await manager.findById(id)              
-      res.render('product', { product: product.toObject(),cart:decoded.cart, style: "productDetail" });           
+      const product = await manager.findById(id)
+      const { name, email, role, cart } = req.user;
+      /* const userCart = req.user.cart */
+      console.log("req.user.cart en home/id =>",req.user.cart)   
+      console.log("req.user del homer",req.user)           
+      res.render('product', { product: product.toObject(), user: { name, email, role, cart }, style: "productDetail" });           
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }          
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
@@ -118,7 +122,7 @@ router.get('/settings',authorize(["ADMIN"]),async(req,res)=>{
   try {
     const users=await usersService.getUsers()
     //console.log(users)
-    res.render('settings',{users:users})
+    res.render('settings',{users:users,email:req.user.email})
   } catch (error) {
     res.status(500).json({message:error.message})
   }
@@ -127,9 +131,11 @@ router.get('/settings',authorize(["ADMIN"]),async(req,res)=>{
 router.get('/cart/:cid', async (req, res) => {  
   try {
     const { cid } = req.params
+    const { name, email, role, cart } = req.user;
     const response = await cManager.getCartProducts(cid)
     const array = response.products.map(doc => doc.toObject());    
-    res.render('cart', {cartProductList: array,  style: "cart" })
+    /* console.log("cid en get /cart/:cid =>", cid) */
+    res.render('cart', {cartProductList: array, cid, user: { name, email, role, cart }, style: "cart" })
 }
 catch (error){
     res.status(500).json({ message: error.message });

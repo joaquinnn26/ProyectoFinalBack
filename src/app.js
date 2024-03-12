@@ -49,7 +49,7 @@ app.use(
       mongoUrl: URI,
     }),
     secret: "secretSession",
-    cookie: { maxAge: 60000 },
+    cookie: { maxAge: 24 * 60 * 60 * 1000 },
   })
 );
 

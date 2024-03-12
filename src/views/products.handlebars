@@ -1,4 +1,4 @@
-<!-- Button trigger modal -->
+{{!-- <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
   <i id="icon_cart" class="bi bi-cart4"></i></button>
     {{#if isLength}}
@@ -16,7 +16,7 @@
         <h1 class="modal-title fs-5" id="exampleModalLabel">Mi carrito</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div id="div-products" class="modal-body">
         {{#each cart}}
         <div class="card mb-3" style="max-width: 540px;">
   <div class="row g-0">
@@ -47,7 +47,10 @@
     
 
 </div>
-    
+     --}}
+<div class="contenedor-botones">
+        <button id="cart_button"><a href="/cart/{{user.cart}}">Your cart</a></button>    
+</div>
 {{#if user.isAdmin}}
     <p id="user-rol">Role: ADMIN ACCOUNT</p>
     <div>
@@ -59,9 +62,9 @@
 <h2 id="user_welcome">Welcome, {{user.first_name}}</h2>
 <p id="user-email">Email: {{user.email}}</p>
 
-<button id="signout_button"><a href="/api/sessions/signout">SIGN OUT</a></button>
 
-<h4 id="logo_carrito"><img src="" alt=""></h4>
+
+<button id="signout_button"><a href="/api/sessions/signout">SIGN OUT</a></button>
 
 <h2 id="catalogue_title">CATALOGUE</h2>
 
@@ -102,3 +105,5 @@
             <p></p>
         {{/if}}    
 </div>
+
+{{!-- <script src="/js/cartFunction.js"></script> --}}

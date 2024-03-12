@@ -3,22 +3,20 @@
 
 {{#if users.length}}
 
-  <ul>
-    {{#each users}}
-      <li>
-        <strong>{{last_name}}</strong> - {{role}} - {{email}} 
-        
+  
+<div id="container">
+    <h2>USER MANAGEMENT</h2>
+    <div id="admin-info">
+        <h3>Admin: {{email}}</h3>    
+    </div>
+    <br>
+    <h3>Users list</h3> 
+    <div id="div-users"></div>
 
-        <button class="button_delete" data-user-id="{{_id}}">Eliminar</button>
-        <button class="button_change" data-user-id="{{_id}}">Cambiar Rol</button>
-      </li>
-    {{/each}}
-  </ul>
+</div>
 {{else}}
   <p>No hay usuarios.</p>
 {{/if}}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="/js/deleted.js"></script>
-<script src="/js/deleteProduct.js"></script>
-<script src="/js/changeRole.js"></script>
+
 <script src="/js/changed.js"></script>
