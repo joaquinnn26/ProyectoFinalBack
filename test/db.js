@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import config from '../src/config/config.js'
+import { logger } from '../src/utils/loggerWinston.js'
 mongoose.connect(config.mongo_uri)
-.then(()=>console.log("conectado a db"))
-.catch(error=>console.log(error))
+.then(()=>logger.information("conectado a db"))
+.catch(error=>logger.error(error))

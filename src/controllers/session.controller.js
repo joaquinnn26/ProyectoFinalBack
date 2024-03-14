@@ -24,7 +24,7 @@ export const signout= async(req, res)=>{
 export const login =async (req, res) => {
 
   const {name, email, age, role, cart,_id} = req.user    
- console.log(req.user)
+ 
   const token = generateToken({ name, email, age, role, cart,_id})
 
   res.cookie('token', token, { maxAge: 6000000, httpOnly: true })
@@ -37,8 +37,7 @@ export const login =async (req, res) => {
 export const recuperar = async (req, res) => {
     const { id }=req.params;
     const { password} = req.body;
-  console.log(req.body)
-  console.log(req.params)
+ 
       if (req.cookies.tokenEmail) { 
        
         try {

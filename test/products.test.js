@@ -24,8 +24,7 @@ describe('GET products',function(){
 describe('CREATE product',function(){
     it('should id object',async function(){
         this.timeout(50000)
-        const response=await manager.createOne(mockProduct)
-        console.log(response)
+        const response=await manager.createOne(mockProduct) 
         expect(response).to.exist;
     })
 })

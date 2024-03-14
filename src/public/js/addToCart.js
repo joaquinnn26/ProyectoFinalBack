@@ -13,8 +13,7 @@ function getProductsList() {
     }).then(result => {
         if (result.status === 200) {
             return result.json().then(data => {
-                console.log("entra al fetch");
-                console.log("cid en el fetch =>", cid)
+
                 products = data.payload;
                 showProductList(products);
             });

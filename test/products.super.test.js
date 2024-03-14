@@ -58,8 +58,7 @@ describe("products endpoints",()=>{
             try {
                 const response = await requester.get(`/api/products/${pid}`);
 
-                console.log('Response Status:', response.status);
-                console.log('Response Body:', response.body.prod._id);
+               
 
                 expect(response.status).to.equal(200);
                 expect(response.body.prod._id).to.be.deep.equal(pid)
@@ -70,25 +69,7 @@ describe("products endpoints",()=>{
             }
         })
     })
-    /* describe ("POST /api/product/",()=>{
-        it("should create product",async function(){
-            this.timeout(50000)
-            try {
-                
-                const response = await requester.post("/api/products/").set('Cookie', [`${cookie.name}=${cookie.value}`]).send(mockProduct)
-                /*console.log("response status POST",response.status)
-                console.log("role",response) */
-              /*   const ownId=response._body.user.owner
-                const ownerProduct=await uManager.findUserByID(ownId)
-                console.log(ownerProduct)
-                console.log(ownId)
-                expect(ownerProduct.role).to.be.equal("ADMIN" || "PREMIUM") */
-               /*  expect(response.status).to.be.equal(200)
-            } catch (error) {
-                console.error(error.message)
-            }
-        })
-    }) */ 
+/ 
     describe("PUT /api/product/:pid",()=>{
         it('should update product by id',async function(){
             this.timeout(50000)
@@ -108,7 +89,7 @@ describe("products endpoints",()=>{
 
                 const response=await requester.delete(`/api/products/${pid}`)
                 expect(response.status).to.be.equal(200)
-                console.log("response status DELETE",response.status)
+                
 
         }) 
     })

@@ -20,7 +20,7 @@ class ProductsManager {
     }
 
     const response = await productsModel.paginate(query, options);
-    /* console.log(response) */
+ 
     const info = {
       status: response.docs ? "success" : "error",
       count: response.totalDocs,

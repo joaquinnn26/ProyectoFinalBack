@@ -5,9 +5,7 @@ buttonAdd.addEventListener('click', function (e) {
 
     const pid = buttonAdd.getAttribute('data-product-id');
     const cid = buttonAdd.getAttribute('data-cart-id');
-    console.log("cartid",cid)
-    console.log("produicid",pid)
-    console.log("anda el evento")
+
     addToCart(cid, pid);
 });
 function addToCart(cid, pid) {
@@ -38,7 +36,7 @@ function addToCart(cid, pid) {
             });
         }
     }).catch(error => {
-        //console.log("entro a futnciin"),
+       
         Swal.fire({
             
             toast: true,
@@ -48,6 +46,6 @@ function addToCart(cid, pid) {
             showConfirmButton: false
         });
 
-        console.log(error.message);
+        
     });
 }

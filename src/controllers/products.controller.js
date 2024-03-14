@@ -57,16 +57,13 @@ export const createProduct =  async (req, res,next) => {
 
 export const deleteOneProduct = async (req, res,next) => {
     const { pid } = req.params;
-/*     let token = req.headers.authorization?.split(' ')[1]; 
-    const decoded = jwt.verify(token,config.secret_jwt);
-    req.user = decoded;
-    console.log(token) */
+
     const user =req.user
-    console.log(user)
+    
 
     try {
         const producto= await findProdById(pid)
-        console.log("producto",producto)
+        
         if (user._id==producto.owner || user.role == "admin") {
             
             const emailOwner= await findById(producto.owner)

@@ -43,25 +43,25 @@ export const createUser =  async (req, res) => {
 
 export const changeRole= async (req, res) => {
         const { idUser } = req.params;
-        console.log(req.params)
+        
         const user = await usersService.findById(idUser);
         if (!user) {
             customError.createError(errorsName.USER_NOT_FOUND,errorsMessage.USER_NOT_FOUND,500)
             }
         
     try {
-        console.log("usuario se eocntro en changerole",user)
+       
 
         let result
         if (user.documents[0].name=="dni" && user.documents[1].name=="address" && user.documents[2].name=="bank") {
-            console.log("role usuario",user.role)
+            
         let roleChange;
         if (user.role == 'PREMIUM') {
             roleChange = 'USER' 
         } else if (user.role == 'user' || user.role == "USER" ){
             roleChange =  'PREMIUM' 
         }
-        console.log(roleChange)
+        
         result =await usersService.updateUser(user.email,{role:roleChange})
         }else{
             customError.createError(errorsName.DOCUMENT_MISSING,errorsMessage.DOCUMENT_MISSING,404)
@@ -78,15 +78,14 @@ export const documentMulter=async(req,res)=> {
     
     const emailUser=await usersService.findById(idUser)
     const email=emailUser.email
-    console.log("email",emailUser)
+
     const { dni, address, bank } = req.files;
     if(!dni || !address || !bank){
         res.status(400).json({message:"falta cargar algun documento"})
     }
-    console.log(req.files)
+
     const response = await saveUserDocuments({ email, dni, address, bank });
 
-    console.log(response)
     res.status(200).json({message:"documentos cargados", response });
 }
 

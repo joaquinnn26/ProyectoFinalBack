@@ -24,14 +24,14 @@ class UsersManager  {
             const result=await usersModel.find()
             return result
         } catch (error) {
-            console.log(error)
+            console.error(error)
             throw error
         }
     }
     async findUserByID(id) {
         try {
             const result = await usersModel.findById(id);
-            console.log(result);
+            
             return result;
         } catch (error) {
             console.error(error);
@@ -58,16 +58,10 @@ class UsersManager  {
     }
     async updateUser(email, obj) {
         const result = await usersModel.updateOne({ email }, obj);
-        console.log("email del update",email)
-        console.log("obj",obj)
-        console.log("resultado update",result)
+        
         return result;
       }  
-/*       async updateUserById(id, obj) {
-        const result = await usersModel.updateOne( {_id: id} , obj);
-        console.log("update USERDAo",result)
-        return result;
-      }   */
+
 }
 
 

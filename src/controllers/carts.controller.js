@@ -22,7 +22,7 @@ export const findCart = async (req, res, next) => {
         const { cid } = req.params;
         const cart = await cartsService.findCartById(cid);
         const cartObj=cart.products.map(doc => doc.toObject())
-        console.log("se encontro el carrito",cartObj)
+        
         if (!cart) {
                 customError.createError(errorsName.CART_NOT_FOUND,errorsMessage.CART_NOT_FOUND,500)
             }
@@ -39,13 +39,13 @@ export const addProductToCart =  async (req, res,next) => {
     const decoded = jwt.verify(token,config.secret_jwt);
     req.user = decoded; */
     const user=req.user
-    console.log(user)
+    
     if (!cid || !pid ) {
         customError.createError(errorsName.DATA_NOT_RECEIVED,errorsMessage.DATA_NOT_RECEIVED,500)
     }
     try {   
         const product= await productsService.findProdById(pid)
-        console.log("product del add",product)
+        
         if (user._id==product.owner) {
             customError.createError(errorsName.YOU_CREATED_PRODUCT,errorsMessage.YOU_CREATED_PRODUCT,500)
         }

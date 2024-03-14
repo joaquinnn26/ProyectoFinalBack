@@ -22,11 +22,11 @@ export default class UsersRepository {
         const result = await uManager.findUserByID(id);
 
         if (!result) {
-            console.log(`No se encontró ningún usuario con el ID: ${id}`);
+            logger.information(`No se encontró ningún usuario con el ID: ${id}`);
             return null;
         }
 
-        console.log(result);
+ 
         return result;
     } catch (error) {
         console.error(`Error al buscar usuario por ID ${id}: ${error.message}`);

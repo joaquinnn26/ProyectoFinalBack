@@ -3,9 +3,9 @@ import { manager } from "../DAL/dao/mongo/products.dao.js";
 import { cManager } from "../DAL/dao/mongo/carts.dao.js";
 import { authorize } from "../middlewares/authMiddleware.js";
 import { usersService } from "../repositoryServices/index.js";
+import { logger } from "../utils/index.js";
 import  jwt  from "jsonwebtoken";
 import config from "../config/config.js";
-import {logger} from "../utils/index.js"
 import passport from "passport"
 import "../passport.js"
 import { findCartById } from "../services/carts.service.js";
@@ -78,7 +78,7 @@ router.get("/recuperar/:id", (req, res) => {
     const { id } = req.params  
     res.render("restoreTwo", {style: "restart",id: id.toString()});
   } else {
-    console.log("No hay token en las cookies. Redirigiendo manualmente a /restore");
+    logger.information("No hay token en las cookies. Redirigiendo manualmente a /restore");
     return res.redirect("/restaurar")
   }
 });
@@ -107,8 +107,7 @@ router.get('/home/:id', async (req, res) => {
       const product = await manager.findById(id)
       const { name, email, role, cart } = req.user;
       /* const userCart = req.user.cart */
-      console.log("req.user.cart en home/id =>",req.user.cart)   
-      console.log("req.user del homer",req.user)           
+            
       res.render('product', { product: product.toObject(), user: { name, email, role, cart }, style: "productDetail" });           
     } catch (error) {
       res.status(500).json({ message: error.message });
@@ -121,7 +120,7 @@ router.get('/home/:id', async (req, res) => {
 router.get('/settings',authorize(["ADMIN"]),async(req,res)=>{
   try {
     const users=await usersService.getUsers()
-    //console.log(users)
+   
     res.render('settings',{users:users,email:req.user.email})
   } catch (error) {
     res.status(500).json({message:error.message})
@@ -134,7 +133,7 @@ router.get('/cart/:cid', async (req, res) => {
     const { name, email, role, cart } = req.user;
     const response = await cManager.getCartProducts(cid)
     const array = response.products.map(doc => doc.toObject());    
-    /* console.log("cid en get /cart/:cid =>", cid) */
+    
     res.render('cart', {cartProductList: array, cid, user: { name, email, role, cart }, style: "cart" })
 }
 catch (error){

@@ -40,7 +40,7 @@ export const saveUserDocuments = async ({email, dni, address, bank }) => {
       },
     ],
   });
-  console.log("savedDocumenbt de service",savedDocuments)
+  
   return savedDocuments;
 };
 
