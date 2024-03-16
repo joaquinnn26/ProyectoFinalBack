@@ -27,7 +27,7 @@ export const login =async (req, res) => {
  
   const token = generateToken({ name, email, age, role, cart,_id})
 
-  res.cookie('token', token, { maxAge: 6000000, httpOnly: true })
+  res.cookie('token', token, { maxAge:  24 * 60 * 60 * 1000, httpOnly: true })
   
   const lastConnection=await usersService.updateUser(email,{last_connection:new Date()})
   return res.redirect('/home')

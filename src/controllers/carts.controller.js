@@ -6,6 +6,7 @@ import customError from "../services/errors/errors.generate.js"
 import { errorsMessage, errorsName } from "../services/errors/errors.enum.js";
 import { productsService } from "../repositoryServices/index.js";
 import { transporter } from "../utils/nodemailer.js";
+import { AwsInstance } from "twilio/lib/rest/accounts/v1/credential/aws.js";
 
 export const createACart = (req, res) => {
     try{
@@ -91,11 +92,21 @@ export const updateProdQuantity = async (req, res,next) => {
     try {
         const {cid, pid} = req.params
         const { quantity } = req.body 
-        if (!cid ||!pid ||!quantity) {
+
+        if (!cid ||!pid ||!quantity ) {
             customError.createError(errorsName.DATA_NOT_RECEIVED,errorsMessage.DATA_NOT_RECEIVED,500)
-        }       
-        const response = await cartsService.updateQuantity(cid, pid, +quantity);       
-        res.status(200).json({ message: "Product updated", response });
+        }
+        const quantityParsed=parseInt(quantity);
+        /* const quantityProduct=productCart.quantity
+        if(action == "increment"){
+            quantityProduct++
+        }  
+        if(action >=0 && action=="decrement"){
+            quantityProduct--
+        }     */  
+        const response = await cartsService.updateQuantity(cid, pid, quantityParsed); 
+        const cart = await cartsService.findCartById(cid)      
+        res.status(200).json({ message: "Product updated", payload:cart });
     }catch (error) {
         next (error)
     }

@@ -57,7 +57,7 @@ class CartsManager {
     async updateProductQuantity(cid, pid, quant){
         const selectedCart = await cartsModel.findById(cid)
         const productIndex = selectedCart.products.findIndex(p => p.product.equals(pid));
-        const newQuantity = quant
+        const newQuantity = parseInt(quant)
         if (productIndex !== -1) {
             selectedCart.products[productIndex].quantity = newQuantity
         }        

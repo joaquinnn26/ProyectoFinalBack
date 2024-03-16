@@ -1,55 +1,15 @@
-{{!-- <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  <i id="icon_cart" class="bi bi-cart4"></i></button>
-    {{#if isLength}}
-    <span class="count">{{cartLength}}</span>
-    {{else}}
-    <span class="count">0</span>
-    {{/if}}
 
+<!-- Botón para abrir el modal -->
+<button id="openModalBtn" data-user-cart={{user.cart}}>Abrir Carrito</button>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Mi carrito</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div id="div-products" class="modal-body">
-        {{#each cart}}
-        <div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="..." class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">{{product.title}}</h5>
-        <p class="card-text">cantidad: {{quantity}}</p>
-       
-      </div>
-    </div>
+<!-- El modal -->
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Carrito de Compras</h2>
+    <div id="products-container"></div>
+    <div id="total-container"></div>
   </div>
-</div>
-
- {{/each}}
- <p>Total de la compra: ${{total}}</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vaciar Carrito</button>
-        <button type="button"  class="btn btn-primary">Terminar la compra</button>
-      </div>
-    </div>
-  </div>
-</div>
-<div>
-    
-
-</div>
-     --}}
-<div class="contenedor-botones">
-        <button id="cart_button"><a href="/cart/{{user.cart}}">Your cart</a></button>    
 </div>
 {{#if user.isAdmin}}
     <p id="user-rol">Role: ADMIN ACCOUNT</p>
@@ -105,5 +65,5 @@
             <p></p>
         {{/if}}    
 </div>
-
+<script src="/js/addToCart.js"></script>
 {{!-- <script src="/js/cartFunction.js"></script> --}}

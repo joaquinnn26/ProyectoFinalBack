@@ -12,9 +12,10 @@ import { findCartById } from "../services/carts.service.js";
 const router = Router();
 
 router.get("/login", (req, res) => {  
-  if (req.session.passport){
+  /* if (req.session.passport){
+    console.log(req.session.passport)
     return res.redirect('/home')
-  }  
+  }  */ 
     
   const allMessages = req.session.messages;
   if(allMessages){
@@ -62,7 +63,7 @@ router.get("/home", passport.authenticate('jwt', {session: false}) ,async (req, 
         totalCompra += prod.quantity * prod.product.price
       } */
 
-      res.render("products", { /* total:totalCompra,cart:productsCart,cartLength:cart.products.length,isLength:isLength, */user: { cart,first_name, email, isAdmin }, productList: productObject, category, page, limit, order, nextPage, prevPage, style: "products" });          
+      res.render("products", { user: { cart,first_name, email, isAdmin }, productList: productObject, category, page, limit, order, nextPage, prevPage, style: "products" });          
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
@@ -131,16 +132,25 @@ router.get('/cart/:cid', async (req, res) => {
   try {
     const { cid } = req.params
     const { name, email, role, cart } = req.user;
-    const response = await cManager.getCartProducts(cid)
-    const array = response.products.map(doc => doc.toObject());    
     
-    res.render('cart', {cartProductList: array, cid, user: { name, email, role, cart }, style: "cart" })
+    const response = await cManager.getCartProducts(cid)
+    const array = response.products.map(doc => doc.toObject());
+    const total = array.reduce((acc, product) => {
+      return acc + (product.product.price * product.quantity);
+  }, 0);  
+    res.render('cart', {total:total,cartProductList: array, cid, user: { name, email, role, cart }, style: "cart" })
 }
 catch (error){
     res.status(500).json({ message: error.message });
 }
 })
 
-
+/* router.get('/purchase',async (req,res)=>{
+  try {
+    
+  } catch (error) {
+    res.status(500).json({message:error.message})
+  }
+}) */
 
 export default router;
